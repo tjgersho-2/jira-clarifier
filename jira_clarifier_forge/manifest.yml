@@ -1,0 +1,26 @@
+modules:
+  jira:issuePanel:
+    - key: jira-clarifier-panel
+      title: AI Clarifier
+      icon: https://developer.atlassian.com/platform/forge/images/issue-panel-icon.svg
+      render: main
+      resolver:
+        function: resolver
+  function:
+    - key: resolver
+      handler: resolver.handler
+
+app:
+  id: ari:cloud:ecosystem::app/your-app-id-here
+
+permissions:
+  scopes:
+    - read:jira-work
+    - write:jira-work
+  external:
+    fetch:
+      backend:
+        - 'https://jira-clarifier.up.railway.app'
+        - 'https://api.anthropic.com'
+      client:
+        - 'https://jira-clarifier.up.railway.app'

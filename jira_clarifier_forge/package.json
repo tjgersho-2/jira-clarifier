@@ -1,0 +1,28 @@
+{
+  "name": "jira_clarifier_forge",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "forge tunnel",
+    "deploy": "forge deploy",
+    "install": "forge install"
+  },
+  "keywords": [
+    "jira",
+    "forge",
+    "ai",
+    "clarity"
+  ],
+  "dependencies": {
+    "@forge/api": "^6.2.0",
+    "@forge/resolver": "^1.7.1",
+    "@forge/ui": "^1.11.4"
+  },
+  "devDependencies": {
+    "@forge/cli": "^6.0.0"
+  }
+}
