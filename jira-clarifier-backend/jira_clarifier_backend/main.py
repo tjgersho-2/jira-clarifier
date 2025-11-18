@@ -27,14 +27,9 @@ load_dotenv()
 # ============================================================================
 
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
-print(ANTHROPIC_API_KEY)
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-print(PINECONE_API_KEY)
 DATABASE_URL = os.getenv("DATABASE_URL")
-print(DATABASE_URL)
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
-print(REDIS_URL)
-
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
 STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
 ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
