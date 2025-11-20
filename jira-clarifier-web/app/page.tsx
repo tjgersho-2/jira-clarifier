@@ -20,6 +20,7 @@ export default function Home() {
   const y2 = useTransform(smoothProgress, [0, 1], [0, -200]);
   const opacity = useTransform(smoothProgress, [0, 0.3], [1, 0]);
   const scale = useTransform(smoothProgress, [0, 0.3], [1, 0.9]);
+ 
 
   // Animated counter
   useEffect(() => {
@@ -101,11 +102,11 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-purple-200 inline-block">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-purple-200">
                 Stop Writing
               </span>
               <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 inline-block">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
                 Bad Jira Tickets
               </span>
             </motion.h1>
@@ -126,7 +127,7 @@ export default function Home() {
                   transition={{ delay: 1, duration: 0.6 }}
                 />
               </span>{' '}
-              in 3 seconds. Save 10+ hours per sprint.
+              in seconds with a click of a button. Save hours of time per sprint.
             </motion.p>
 
             <motion.div 
@@ -135,10 +136,14 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6 }}
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" className="text-lg px-10 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg shadow-indigo-500/50 group relative overflow-hidden">
+       
+                <Button 
+                  onClick={() => window.location.href = '/checkout?plan=free&forge=true'} 
+                  size="lg" 
+                  className="text-lg px-10 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg shadow-indigo-500/50 group relative overflow-hidden"
+                >
                   <span className="relative z-10 flex items-center">
-                    Install Free in Jira
+                   Buy Now
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition" />
                   </span>
                   <motion.div
@@ -148,13 +153,25 @@ export default function Home() {
                     transition={{ duration: 0.3 }}
                   />
                 </Button>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" variant="outline" className="text-lg px-10 h-16 border-slate-700 hover:border-indigo-500 hover:bg-indigo-500/10 text-white">
-                  <Zap className="mr-2 w-5 h-5" />
-                  See Live Demo
+
+
+                <Button 
+                  onClick={() => window.location.href = '/checkout'} 
+                  size="lg" 
+                  className="text-lg px-10 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg shadow-indigo-500/50 group relative overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center">
+                  View Pricing
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition" />
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
+                    initial={{ x: "100%" }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </Button>
-              </motion.div>
+
             </motion.div>
 
             <motion.div 
@@ -476,7 +493,8 @@ export default function Home() {
                 features: ["5 clarifies/month", "Community support"],
                 cta: "Current Plan",
                 variant: "outline" as const,
-                highlight: false
+                highlight: false,
+                onClick: ()=> window.location.href = '/checkout?plan=free'
               },
               {
                 name: "Pro",
@@ -485,7 +503,8 @@ export default function Home() {
                 features: ["Unlimited clarifies", "Priority support", "Export to Markdown"],
                 cta: "Upgrade to Pro",
                 variant: "default" as const,
-                highlight: true
+                highlight: true,
+                onClick: () => window.location.href = '/checkout?plan=pro'
               },
               {
                 name: "Enterprise",
@@ -494,7 +513,8 @@ export default function Home() {
                 features: ["SSO + SCIM", "SOC2, GDPR", "Dedicated support"],
                 cta: "Contact Sales",
                 variant: "outline" as const,
-                highlight: false
+                highlight: false,
+                onClick: () => window.location.href = 'mailto:sales@jiraclarifier.com?subject=Enterprise%20Inquiry'
               }
             ].map((plan, i) => (
               <motion.div
@@ -538,6 +558,7 @@ export default function Home() {
                   <Button 
                     className={`mt-10 w-full h-14 text-lg ${plan.highlight ? 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700' : ''}`}
                     variant={plan.variant}
+                    onClick={plan.onClick}
                   >
                     {plan.cta}
                   </Button>
@@ -574,9 +595,13 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" className="text-xl px-12 h-16 bg-white text-indigo-600 hover:bg-slate-100 shadow-2xl">
+               <Button 
+                  onClick={() => window.location.href = '/checkout?plan=pro&forge=true'} 
+                  size="lg" 
+                  className="text-xl px-12 h-16 bg-white text-indigo-600 hover:bg-slate-100 shadow-2xl"
+                >
                   <Rocket className="mr-2 w-6 h-6" />
-                  Install Free in Jira
+                  Get Started Now
                   <ArrowRight className="ml-2 w-6 h-6" />
                 </Button>
               </motion.div>
